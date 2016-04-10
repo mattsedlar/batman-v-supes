@@ -65,12 +65,22 @@ df = df.assign(perc_change= ((df["FirstSundayGross"] - df["FirstFridayGross"])/d
 # OpeningWeekend multiplier
 df = df.assign(multiplier=df["FinalGross"]/df["OpeningWeekend"])
 
-# correlation coefficient
-np.corrcoef(df["FinalGross"], df["perc_change"])
-np.corrcoef(df["FinalGross"], df["multiplier"])
+# correlation coefficients
+print("correlation between final gross and percentage change")
+print(np.corrcoef(df["FinalGross"], df["perc_change"]))
+
+print("correlation between final gross and multiplier")
+print(np.corrcoef(df["FinalGross"], df["multiplier"]))
+
+print("correlation between final gross and critics scores")
+print(np.corrcoef(df["FinalGross"], df["CriticsScores"]))
+
+print("correlation between critics scores and percentage change")
+print(np.corrcoef(df["perc_change"], df["CriticsScores"]))
+
 
 # linear model
-fit = smf.ols(formula="FinalGross ~ CriticsScores + multiplier",data=df).fit()
+fit = smf.ols(formula="FinalGross ~ CriticsScores + perc_change",data=df).fit()
 print(fit.summary())
 
 # PLOTS
