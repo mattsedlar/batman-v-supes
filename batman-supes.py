@@ -3,19 +3,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
 
-movies = ["Fantastic Four","The Dark Knight Rises","Kick-Ass 2", "Avengers: Age of Ultron", "Iron Man 3", "Captain America: Winter Soldier", "X-Men: First Class", "The Amazing Spider-Man 2", "Thor", "Ant-Man","Guardians of the Galaxy","Captain America: First Avenger","Thor: The Dark World","The Wolverine","TMNT (2014)", "Green Lantern","Marvel's The Avengers","X-Men: Days of Future Past","Green Hornet","Ghost Rider: Spirit of Vengeance","Big Hero 6","Man of Steel","Chronicle","Dredd","Kick-Ass","Jonah Hex","Iron Man 2","X-Men Origins: Wolverine","Watchmen","Push","Jumper","Iron Man","The Incredible Hulk","Hellboy II: The Golden Army","The Dark Knight"]
+movies = ["Fantastic Four","The Dark Knight Rises","Kick-Ass 2", "Avengers: Age of Ultron", "Iron Man 3", "Captain America: Winter Soldier", "X-Men: First Class", "The Amazing Spider-Man 2", "Thor", "Ant-Man","Guardians of the Galaxy","Captain America: First Avenger","Thor: The Dark World","The Wolverine","TMNT (2014)", "Green Lantern","Marvel's The Avengers","X-Men: Days of Future Past","Green Hornet","Ghost Rider: Spirit of Vengeance","Big Hero 6","Man of Steel","Chronicle","Dredd","Kick-Ass","Jonah Hex","Iron Man 2","X-Men Origins: Wolverine","Watchmen","Push","Jumper","Iron Man","The Incredible Hulk","Hellboy II: The Golden Army","The Dark Knight","Punisher: War Zone","The Spirit"]
 
-release_year = ["2015","2012","2013","2015","2013","2014","2011","2014","2011","2015","2014","2011","2013","2013","2014","2011","2012","2014","2011","2012","2014","2013","2012","2012","2010","2010","2010","2009","2009","2009","2008","2008","2008","2008","2008"]
+release_year = ["2015","2012","2013","2015","2013","2014","2011","2014","2011","2015","2014","2011","2013","2013","2014","2011","2012","2014","2011","2012","2014","2013","2012","2012","2010","2010","2010","2009","2009","2009","2008","2008","2008","2008","2008","2008","2008"]
 
-first_fri = [11.28,75.8,5.83,84.4,68.9,36.9,21.4,35.2,25.5,22.6,37.8,25.7,31.9,20.7,25.6,21.4,80.8,35.5,11.1,6.9,15.8,44.03,8.65,2.2,7.6,1.9,51.2,34.4,24.5,3.5,6.6,35.2,21.4,13.7,67.1]
+first_fri = [11.28,75.8,5.83,84.4,68.9,36.9,21.4,35.2,25.5,22.6,37.8,25.7,31.9,20.7,25.6,21.4,80.8,35.5,11.1,6.9,15.8,44.03,8.65,2.2,7.6,1.9,51.2,34.4,24.5,3.5,6.6,35.2,21.4,13.7,67.1,1.6,3.8]
 
-first_sun = [5.83,40.2,3.31,50.3,43,23.4,14,23.3,16.9,15.1,25.5,17.4,21.8,14.3,17.8,15.1,57.1,26,9.8,6.5,16.4,36.3,3.25,1.6,4.9,1.6,31.1,21.3,12.3,2.4,10.6,26,15.5,9.2,43.5]
+first_sun = [5.83,40.2,3.31,50.3,43,23.4,14,23.3,16.9,15.1,25.5,17.4,21.8,14.3,17.8,15.1,57.1,26,9.8,6.5,16.4,36.3,3.25,1.6,4.9,1.6,31.1,21.3,12.3,2.4,10.6,26,15.5,9.2,43.5,1.1,2.1]
 
-opening = [25.6,160.8,13.3,191.2,174.1,95,55.1,91.6,65.7,57.2,94.3,65,85.7,53.1,65.5,53.1,207.4,90.8,33.5,22.1,56.2,116.6,22,6.27,19.8,5.37,128.1,85,55.2,10,27.3,98.6,55.4,34.5,158.4]
+opening = [25.6,160.8,13.3,191.2,174.1,95,55.1,91.6,65.7,57.2,94.3,65,85.7,53.1,65.5,53.1,207.4,90.8,33.5,22.1,56.2,116.6,22,6.27,19.8,5.37,128.1,85,55.2,10,27.3,98.6,55.4,34.5,158.4,4.2,6.4]
 
-final_gross = [56.1,448.1,28.8,459,409,259.8,146.4,202.9,181,180.2,333.2,176.7,206.4,132.6,191.2,116.6,623.4,233.9,98.8,51.8,222.5,291,64.5,13.4,48,10.5,312,179.8,107.5,31.8,80.1,318.4,134.8,75.9,534.8]
+final_gross = [56.1,448.1,28.8,459,409,259.8,146.4,202.9,181,180.2,333.2,176.7,206.4,132.6,191.2,116.6,623.4,233.9,98.8,51.8,222.5,291,64.5,13.4,48,10.5,312,179.8,107.5,31.8,80.1,318.4,134.8,75.9,534.8,8,19.8]
 
-critics = [.09,.87,.30,.75,.79,.89,.87,.53,.77,.80,.91,.79,.67,.70,.21,.26,.92,.91,.43,.17,.89,.56,.85,.78,.76,.12,.72,.38,.65,.23,.16,.94,.67,.85,.94]
+critics = [.09,.87,.30,.75,.79,.89,.87,.53,.77,.80,.91,.79,.67,.70,.21,.26,.92,.91,.43,.17,.89,.56,.85,.78,.76,.12,.72,.38,.65,.23,.16,.94,.67,.85,.94,.27,.14]
 
 d = { "Release Year" : pd.Series(release_year, index=movies),
       "FirstFridayGross" : pd.Series(first_fri, index=movies),
@@ -77,6 +77,11 @@ df = df.assign(perc_change= ((df["FirstSundayGross"] - df["FirstFridayGross"])/d
 # OpeningWeekend multiplier
 df = df.assign(multiplier=df["FinalGross"]/df["OpeningWeekend"])
 
+# sort the frame by release year
+df = df.sort_index(by=['FinalGross'], ascending=[False])
+
+print(df.to_html())
+
 # correlation coefficients
 print("correlation between final gross and percentage change")
 print(np.corrcoef(df["FinalGross"], df["perc_change"]))
@@ -95,63 +100,68 @@ print(np.corrcoef(df["perc_change"], df["CriticsScores"]))
 fit = smf.ols(formula="FinalGross ~ CriticsScores + perc_change",data=df).fit()
 print(fit.summary())
 
+x_new = pd.DataFrame({'CriticsScores':[.29],'perc_change':[.55] })
+print(fit.predict(x_new))
+
 # PLOTS
-ax = df.plot.scatter(x="multiplier",y="FinalGross",title="Short- and Long-Run Peformance of Superhero Films, 2010-2015",s=50,edgecolor="none",alpha=0.75)
-ax.set_xlabel("Opening Weekend Multiplier")
-ax.set_ylabel("Final Domestic Gross (Millions)")
+ax = df.plot.hexbin(x="multiplier",y="FinalGross",title="Short- and Long-Run Peformance of Superhero Films, 2008-2015",gridsize=15,colormap="BuPu")
+ax.set_xlabel("Opening Weekend Multiplier\nSource: boxoffice.com, boxofficemojo.com, the-numbers.com, and author's calculations.",fontsize=9)
+ax.set_ylabel("Final Domestic Gross (Millions)",fontsize=9)
 ax.set_title(ax.get_title(), fontsize=15, ha='left')
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
 ax.get_xaxis().tick_bottom()
 ax.get_yaxis().tick_left()
 ax.title.set_position((-0.05,1.05))
-ax.tick_params('x',labelsize=8)
-ax.tick_params('y',labelsize=8)
+ax.tick_params('x',labelsize=7)
+ax.tick_params('y',labelsize=7)
 ax.set_ylim(0,700)
 fig = ax.get_figure()
 fig.savefig("batman-supes-fig-1.png")
 
-ax2 = df.plot.scatter(x="perc_change",y="FinalGross",title="Short- and Long-Run Peformance of Superhero Films, 2010-2015",s=50,edgecolor="none",alpha=0.75)
-ax2.set_xlabel("Friday to Sunday Earnings Percentage Change on Opening Weekend")
-ax2.set_ylabel("Final Domestic Gross (Millions)")
+ax2 = df.plot.hexbin(x="perc_change",y="FinalGross",title="Short- and Long-Run Peformance of Superhero Films, 2008-2015",gridsize=15,colormap="BuPu")
+ax2.set_xlabel("Friday to Sunday Earnings Percentage Change on Opening Weekend\nSource: boxoffice.com, boxofficemojo.com, the-numbers.com, and author's calculations.",fontsize=9)
+ax2.set_ylabel("Final Domestic Gross (Millions)",fontsize=9)
 ax2.set_title(ax2.get_title(), fontsize=15, ha='left')
 ax2.title.set_position((-0.05,1.05))
 ax2.spines["top"].set_visible(False)
 ax2.spines["right"].set_visible(False)
 ax2.get_xaxis().tick_bottom()
 ax2.get_yaxis().tick_left()
-ax2.tick_params('x',labelsize=8)
-ax2.tick_params('y',labelsize=8)
+ax2.tick_params('x',labelsize=7)
+ax2.tick_params('y',labelsize=7)
 ax2.set_ylim(0,700)
 fig = ax2.get_figure()
 fig.savefig("batman-supes-fig-2.png")
 
-ax3 = df.plot.scatter(x="perc_change",y="FinalGross",c="CriticsScores",cmap=plt.cm.BuPu,s=50,title="Short- and Long-Run Peformance of Superhero Films, 2010-2015",edgecolor="none",alpha=0.75)
-ax3.set_xlabel("Friday to Sunday Earnings Percentage Change on Opening Weekend")
-ax3.set_ylabel("Final Domestic Gross (Millions)")
+ax3 = df.plot.hexbin(x="perc_change",y="FinalGross",C="CriticsScores",cmap=plt.cm.BuPu,gridsize=15,title="Short- and Long-Run Peformance of Superhero Films, 2008-2015")
+ax3.set_xlabel("Friday to Sunday Earnings Percentage Change on Opening Weekend\nSource: boxoffice.com, boxofficemojo.com, the-numbers.com, and author's calculations.",fontsize=9)
+ax3.set_ylabel("Final Domestic Gross (Millions)",fontsize=9)
 ax3.set_title(ax3.get_title(), fontsize=15, ha='left')
 ax3.title.set_position((-0.05,1.05))
 ax3.spines["top"].set_visible(False)
 ax3.spines["right"].set_visible(False)
 ax3.get_xaxis().tick_bottom()
 ax3.get_yaxis().tick_left()
-ax3.tick_params('x',labelsize=8)
-ax3.tick_params('y',labelsize=8)
+ax3.tick_params('x',labelsize=7)
+ax3.tick_params('y',labelsize=7)
 ax3.set_ylim(0,700)
 fig = ax3.get_figure()
+cb = plt.colorbar(fig)
+cb.set_label("Critics' Scores")
 fig.savefig("batman-supes-fig-3.png")
 
-ax4 = df.plot.scatter(x="CriticsScores",y="FinalGross",title="Critics' Scores and Domestic Gross of Superhero Films, 2010-2015",s=50,edgecolor="none",alpha=0.75)
-ax4.set_xlabel("Rotten Tomatoes Score")
-ax4.set_ylabel("Final Domestic Gross (Millions)")
+ax4 = df.plot.hexbin(x="CriticsScores",y="FinalGross",title="Critics' Scores and Domestic Gross of Superhero Films, 2008-2015",gridsize=15,colormap="BuPu")
+ax4.set_xlabel("Rotten Tomatoes Score\nSource: boxofficemojo.com and rottentomatoes.com",fontsize=9)
+ax4.set_ylabel("Final Domestic Gross (Millions)",fontsize=9)
 ax4.set_title(ax4.get_title(), fontsize=15, ha='left')
 ax4.title.set_position((-0.05,1.05))
 ax4.spines["top"].set_visible(False)
 ax4.spines["right"].set_visible(False)
 ax4.get_xaxis().tick_bottom()
 ax4.get_yaxis().tick_left()
-ax4.tick_params('x',labelsize=8)
-ax4.tick_params('y',labelsize=8)
+ax4.tick_params('x',labelsize=7)
+ax4.tick_params('y',labelsize=7)
 ax4.set_ylim(0,700)
 fig = ax4.get_figure()
 fig.savefig("batman-supes-fig-4.png")
